@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+ 
+</head>
+<body>
+<div class="container">
+ <br>
+ <div class="jumbotron">
+ <h1 class="display-4">Send Message</h1>
+ <br>
+ <div>
+    <label for="sender"> Select Sender </label>
+    <select name  = "sender" id="sender">
+        <option value="michael">Michael</option>
+        <option value="pam">Pam</option>
+        <option value="jim">Jim</option>
+    </select>
+ </div>
+ 
+ <br>
+ <br>
+ <div>
+    <label for="reciever"> Select Reciever </label>
+    <select name  = "reciever" id="reciever">
+        <option value="michael">Michael</option>
+        <option value="pam">Pam</option>
+        <option value="jim">Jim</option>
+        <option value="everyone">Everyone</option>
+    </select>
+ </div>
+ <br>
+ <br>
+ <textarea id = "message" class="form-control" placeholder="Your Message Here">
+</textarea>
+ <br>
+ <br>
+ <button id="send" class="btn btn-success">Send</button>
+ </div>
+ <div id="messages">
+ 
+</div>
+</div>
+<script>
+
+</script>
+</body>
+</html>
+
+<script>
+    $(() => {
+    $("#send").click(()=>{
+       sendMessage({
+          sender: $("#sender").val(), 
+          reciever: $("#reciever").val(), 
+          message:$("#message").val()});
+        })
+      getMessages()
+    })
+    
+function addMessages(message){
+   $("#messages").append(`
+      <h4> ${message.sender} </h4>
+      <h4> ${message.reciever} </h4>
+      <p>  ${message.message} </p>`)
+   }
+   
+function getMessages(){
+  $.get("http://localhost:3000/messages", (data) => {
+   data.forEach(addMessages);
+   })
+ }
+ 
+function sendMessage(message){
+   $.post("http://localhost:3000/messages", message)
+ }
+</script>
+
