@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Books</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+        }
+    </style>
+  </head>
+  <body>
+    <table>
+    <tr>
+        <th>Book Name</th>
+        <th>Author</th>
+        <th>Genre</td>
+    </tr>
+
+
+    <%for(let i=0; i<books.length; i++){%>
+        <tr>
+            <td><%=books[i].name%></td>
+            <td><%=books[i].author%></td>
+            <td><%=books[i].genre%></td>
+        </tr>
+    <%}%>
+</table>
+
+  </body>
+</html>
